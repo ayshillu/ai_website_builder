@@ -1,0 +1,574 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title>Growthzi</title>
+
+    <!-- Fav Icon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link href="{% static 'css/owl.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/elpath.css' %}" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" id="jssDefault" rel="stylesheet">
+    <link href="{% static 'css/rtl.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+
+<!-- page wrapper -->
+
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close">close</div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="G" class="letters-loading">
+                                G
+                            </span>
+                            <span data-text-preloader="r" class="letters-loading">
+                                r
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="t" class="letters-loading">
+                                t
+                            </span>
+                            <span data-text-preloader="h" class="letters-loading">
+                                h
+                            </span>
+                            <span data-text-preloader="z" class="letters-loading">
+                                z
+                            </span>
+                            <span data-text-preloader="i" class="letters-loading">
+                                i
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        <!-- page-direction -->
+        <div class="page_direction">
+            <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+            <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+        </div>
+        <!-- page-direction end -->
+
+
+        <!-- main header -->
+        <header class="main-header">
+            <!-- header-lower -->
+            <div class="header-lower">
+                <div class="auto-container">
+                    <div class="outer-box">
+                        <div class="logo-box">
+                            <figure class="logo"><a href="index.html"><img src="{% static 'images/logo.png' %}"
+                                        alt=""></a></figure>
+                        </div>
+                        <div class="menu-area">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler">
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                            </div>
+                            <nav class="main-menu navbar-expand-md navbar-light clearfix">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation scroll-nav clearfix">
+                                        <li><a href="#demo">Demos</a></li>
+                                        <li><a href="#features">Features</a></li>
+                                        <li><a href="https://templatepath.ticksy.com/">Support</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="menu-right-content">
+                            <div class="btn-box"><a
+                                    href="https://themeforest.net/item/sensai-ai-generator-html-template/49328359?s_rank=2"
+                                    target="_blank">Login</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- main-header end -->
+
+
+        <!-- banner-section -->
+        <section class="banner-section centred p_relative">
+            <div class="pattern-layer">
+                <div class="pattern-1" style="background-image: url(images/shape-1.png);"></div>
+                <div class="pattern-2" style="background-image: url(images/shape-2.png);"></div>
+                <div class="pattern-3" style="background-image: url(images/shape-3.png);"></div>
+                <div class="pattern-4" style="background-image: url(images/shape-4.png);"></div>
+                <div class="pattern-5" style="background-image: url(images/shape-5.png);"></div>
+            </div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <h2><span class="animation_text_word"></span> Generator <br>Template</h2>
+                    <p>The AI website generator who turns your imagination into unique</p>
+
+                    <a href="{% url 'details' %}">
+                        <button >Generate your website</button>
+                    </a>
+                </div>
+                <div class="mouse-btn-down scroll-to-target" data-target=".main-footer">
+                    <div class="scroll-btn-flip-box">
+                        <span class="scroll-btn-flip" data-text="Scroll Down">Scroll Down</span>
+                    </div>
+                    <div class="scroll-arrow-box">
+                        <img src="{% static 'images/icon-1.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- banner-section end -->
+
+
+        <!-- funfact-section -->
+        <section class="funfact-section centred pb_150">
+            <div class="pattern-layer" style="background-image: url(images/shape-7.png);"></div>
+            <div class="auto-container">
+                <div class="inner-container">
+                    <div class="shape" style="background-image: url(images/shape-6.png);"></div>
+                    <div class="sec-title mb_55">
+                        <span class="sub-title mb_15">Best Choice</span>
+                        <h2>Take your website to the <br>next level</h2>
+                    </div>
+                    <div class="funfact-inner">
+                        <div class="funfact-block-one">
+                            <div class="inner-box">
+                                <div class="count-outer count-box">
+                                    <span class="count-text" data-speed="1500" data-stop="150">0</span><span>+</span>
+                                </div>
+                                <p>UI Elements</p>
+                            </div>
+                        </div>
+                        <div class="funfact-block-one">
+                            <div class="inner-box">
+                                <div class="count-outer count-box">
+                                    <span class="count-text" data-speed="1500" data-stop="07">0</span><span>+</span>
+                                </div>
+                                <p>Home Pages</p>
+                            </div>
+                        </div>
+                        <div class="funfact-block-one">
+                            <div class="inner-box">
+                                <div class="count-outer count-box">
+                                    <span class="count-text" data-speed="1500" data-stop="100">0</span><span>+</span>
+                                </div>
+                                <p>Premade Blocks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- funfact-section end -->
+
+
+        <!-- demo-section -->
+        <section class="demo-section centred" id="demo">
+            <div class="auto-container">
+                <div class="sec-title mb_55">
+                    <span class="sub-title mb_15">Homepages</span>
+                    <h2>Great packs of ready <br>made theme.</h2>
+                    <p>Beautiful, hand-crafted designs to get you started. Install any demo or <br>template with a
+                        single click. Mix and match anything.</p>
+                </div>
+                <div class="inner-container">
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/"
+                                            target="_blank"><img src="{% static 'images/demo-1.jpg' %}" alt=""></a>
+                                    </figure>
+                                    <h3><a href="https://azim.hostlin.com/Sensai/" target="_blank">AI Website
+                                            Generator</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-2.html"
+                                            target="_blank"><img src="{% static 'images/demo-2.jpg' %}" alt=""></a>
+                                    </figure>
+                                    <h3><a href="https://azim.hostlin.com/Sensai/index-2.html" target="_blank">AI Website
+                                            Generator (Dark)</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-3.html"
+                                            target="_blank"><img src="{% static 'images/demo-3.jpg' %}" alt=""></a>
+                                    </figure>
+                                    <h3><a href="https://azim.hostlin.com/Sensai/index-3.html" target="_blank">AI Website
+                                            Generator</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-4.html"
+                                            target="_blank"><img src="{% static 'images/demo-4.jpg' %}" alt=""></a>
+                                    </figure>
+                                    <h3><a href="https://azim.hostlin.com/Sensai/index-4.html" target="_blank">AI Website
+                                            Generator</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-5.html"
+                                            target="_blank"><img src="{% static 'images/demo-5.jpg' %}" alt=""></a>
+                                    </figure>
+                                    <h3><a href="https://azim.hostlin.com/Sensai/index-5.html" target="_blank">AI Website
+                                            Generator</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-6.html"
+                                            target="_blank"><img src="{% static 'images/demo-6.jpg' %}" alt=""></a>
+                                    </figure>
+                                    <h3><a href="https://azim.hostlin.com/Sensai/index-6.html" target="_blank">AI
+                                            Website</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-7.html"
+                                            target="_blank"><img src="{% static 'images/demo-7.jpg' %}" alt=""></a>
+                                    </figure>
+                                    <h3><a href="https://azim.hostlin.com/Sensai/index-7.html" target="_blank">AI
+                                            SAAS</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
+                            <div class="demo-block-one">
+                                <div class="inner-box">
+                                    <figure class="image-box"><img src="{% static 'images/demo-8.jpg' %}" alt="">
+                                    </figure>
+                                    <h3>Coming Soon</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- demo-section end -->
+
+
+        <div class="slide-text">
+            <ul class="text-box">
+                <li>Image</li>
+                <li>Video</li>
+                <li>Audio</li>
+            </ul>
+        </div>
+
+
+        <!-- responsive-section -->
+        <section class="responsive-section">
+            <div class="pattern-layer" style="background-image: url(images/shape-8.png);"></div>
+            <div class="auto-container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                        <figure class="image-box clearfix"><img src="{% static 'images/responsive-1.png' %}" alt="">
+                        </figure>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                        <div class="content-box">
+                            <div class="sec-title">
+                                <span class="sub-title mb_15">Responsive</span>
+                                <h2>Fully Responsive & Perfectly fit to all screen</h2>
+                                <p>Growthzi is responsive so the layout will adapt to different screen sizes that will
+                                    make your website compatible with any device such as smart phones, tablets &
+                                    computers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- responsive-section end -->
+
+
+        <!-- block-section -->
+        <section class="block-section">
+            <div class="pattern-layer" style="background-image: url(images/shape-9.png);"></div>
+            <div class="auto-container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                        <div class="content-box">
+                            <div class="sec-title">
+                                <span class="sub-title mb_15">Unlimited Blocks</span>
+                                <h2>Create your dream Website by using unlimited style</h2>
+                                <p>Choose the most suitable template from the great collection of beautiful templates.
+                                    Create your website in minutes by using readymade inner pages and save time.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                        <figure class="image-box clearfix"><img src="{% static 'images/block-1.png' %}" alt=""></figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- block-section end -->
+
+
+        <!-- feature-section -->
+        <section class="feature-section pt_150 centred" id="features">
+            <div class="pattern-layer">
+                <div class="pattern-1" style="background-image: url(images/shape-11.png);"></div>
+                <div class="pattern-2" style="background-image: url(images/shape-4.png);"></div>
+            </div>
+            <div class="auto-container">
+                <div class="sec-title mb_55">
+                    <span class="sub-title mb_15">Features</span>
+                    <h2>Get Access to Exclusive <br>Features</h2>
+                </div>
+                <div class="inner-container">
+                    <div class="shape" style="background-image: url(images/shape-10.png);"></div>
+                    <ul class="feature-list clearfix">
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-2.png' %}" alt=""></div>
+                                <h4>Swiper Touch Slider</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-3.png' %}" alt=""></div>
+                                <h4>Isotope Filtering</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-4.png' %}" alt=""></div>
+                                <h4>W3C Validation</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-5.png' %}" alt=""></div>
+                                <h4>Mailchimp Compatible</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-6.png' %}" alt=""></div>
+                                <h4>Google Fonts</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-7.png' %}" alt=""></div>
+                                <h4>WordPress 6.1</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-8.png' %}" alt=""></div>
+                                <h4>Magnific Popup</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-9.png' %}" alt=""></div>
+                                <h4>Scroll Animation</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-10.png' %}" alt=""></div>
+                                <h4>Elementor Builder</h4>
+                            </div>
+                        </li>
+                        <li class="feature-block-one">
+                            <div class="inner-box">
+                                <div class="icon-box"><img src="{% static 'images/icon-11.png' %}" alt=""></div>
+                                <h4>Ajax Contact Form</h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- feature-section end -->
+
+
+        <!-- inner-section -->
+        <section class="inner-section centred">
+            <div class="outer-container">
+                <div class="sec-title mb_55">
+                    <span class="sub-title mb_15">Inner Page</span>
+                    <h2>Awesome designed <br>Inner pages</h2>
+                </div>
+                <ul class="page-list">
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-1.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-2.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-3.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-4.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-5.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-6.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-7.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-1.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-2.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-3.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-4.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-5.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-6.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-7.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-1.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-2.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-3.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-4.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-5.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-6.jpg' %}" alt=""></figure>
+                    </li>
+                    <li>
+                        <figure class="image-box"><img src="{% static 'images/inner-7.jpg' %}" alt=""></figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- inner-section end -->
+
+
+        <!-- main-footer -->
+        <footer class="main-footer centred">
+            <div class="pattern-layer">
+                <div class="pattern-1" style="background-image: url(images/shape-12.png);"></div>
+                <div class="pattern-2" style="background-image: url(images/shape-4.png);"></div>
+                <div class="pattern-3" style="background-image: url(images/shape-5.png);"></div>
+                <div class="pattern-5" style="background-image: url(images/shape-14.png);"></div>
+            </div>
+            <div class="auto-container">
+                <div class="content-box">
+                    <h2>Create Stunning Website <br>with <span>Sensai</span></h2>
+                    <a href="https://themeforest.net/item/sensai-ai-generator-html-template/49328359?s_rank=2"
+                        target="_blank">Purchase Theme</a>
+                </div>
+            </div>
+        </footer>
+        <!-- main-footer end -->
+
+
+
+        <!--Scroll to top-->
+        <div class="scroll-to-top">
+            <div>
+                <div class="scroll-top-inner">
+                    <div class="scroll-bar">
+                        <div class="bar-inner"></div>
+                    </div>
+                    <div class="scroll-bar-text">Go To Top</div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll to top end -->
+
+    </div>
+
+
+    <!-- jequery plugins -->
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.js' %}"></script>
+    <script src="{% static 'js/wow.js' %}"></script>
+    <script src="{% static 'js/appear.js' %}"></script>
+    <script src="{% static 'js/pagenav.js' %}"></script>
+    <script src="{% static 'js/text_animation.js' %}"></script>
+    <script src="{% static 'js/text_plugins.js' %}"></script>
+
+    <!-- main-js -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body><!-- End of .page_wrapper -->
+
+</html>

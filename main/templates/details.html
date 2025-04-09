@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Website</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #1c1c1c;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .form-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #d7ff1e;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+            color: #ccff00;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+        }
+        button {
+            background: linear-gradient(to right, #a4ff00, #00ff88);
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form class="form-container" onsubmit="submitForm(event)">
+        <h2>Build & scale <span>your complete functional dream</span> website with AI</h2>
+
+        <label for="business_type">&#128187; Name of your Business<span>*</span></label>
+        <input type="text" name="business_type" id="business_type" required>
+
+        <label for="industry">&#128205; Business Location<span>*</span></label>
+        <input type="text" name="industry" id="industry" required>
+
+        <label for="description">&#128221; Describe your Business<span>*</span></label>
+        <textarea name="description" id="description" placeholder="e.g. coffee shop serving freshly brewed coffee" required></textarea>
+
+        <label for="business_category">&#127760; Type of Business<span>*</span></label>
+        <input type="text" name="business_category" id="business_category" placeholder="e.g. Educational, Retail, Manufacturing" required>
+
+        <label for="user_email">&#128231; Your Email<span>*</span></label>
+        <input type="email" name="user_email" id="user_email" required>
+
+        <button type="submit"><i>🚀</i> Generate</button>
+    </form>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            const business_type = document.getElementById("business_type").value;
+            const industry = document.getElementById("industry").value;
+            const description = document.getElementById("description").value;
+            const business_category = document.getElementById("business_category").value;
+            const user_email = document.getElementById("user_email").value;
+            const token = localStorage.getItem("token");
+
+            fetch("/api/create-website/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+                body: JSON.stringify({
+                    business_type: business_type,
+                    industry: industry,
+                    description: description,
+                    business_category: business_category,
+                    user_email: user_email
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not OK");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("✅ API Response:", data);
+                alert("✅ Website generated successfully!");
+            })
+            .catch(error => {
+                console.error("❌ Error:", error);
+                alert("Something went wrong. Please try again.");
+            });
+        }
+    </script>
+</body>
+</html>
