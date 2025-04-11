@@ -33,6 +33,7 @@ media
 
 # If your project uses a virtual environment
 .env
+.env.corrected
 .venv
 env/
 venv/
