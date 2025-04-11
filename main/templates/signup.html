@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign Up | Growthzi{% endblock %}
+
+{% block extra_css %}
+<style>
+    .signup-section {
+        padding: 80px 0;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        background-color: #0f172a;
+    }
+
+    .pattern-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .signup-form {
+        background: #1e293b;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        margin: 0 auto;
+        border: 1px solid #334155;
+    }
+
+    .signup-form h2 {
+        margin-bottom: 30px;
+        color: #a5b4fc;
+        font-weight: 700;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 500;
+        color: #f1f5f9;
+    }
+
+    .form-group input {
+        width: 100%;
+        height: 55px;
+        border: 1px solid #475569;
+        border-radius: 5px;
+        padding: 0 20px;
+        font-size: 16px;
+        color: #f1f5f9;
+        background-color: #334155;
+        transition: all 300ms ease;
+    }
+
+    .form-group input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+        outline: none;
+    }
+
+    .signup-btn {
+        height: 55px;
+        border-radius: 5px;
+        padding: 0 35px;
+        font-size: 16px;
+        line-height: 55px;
+        font-weight: 500;
+        color: #fff;
+        background: #6366f1;
+        text-align: center;
+        cursor: pointer;
+        transition: all 300ms ease;
+        border: none;
+        display: block;
+        width: 100%;
+    }
+
+    .signup-btn:hover {
+        background: #4f46e5;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 25px;
+        color: #cbd5e1;
+    }
+
+    .login-link a {
+        color: #a5b4fc;
+        font-weight: 500;
+        transition: all 300ms ease;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+        color: #818cf8;
+    }
+
+    .error-message {
+        color: #fef2f2;
+        background-color: #b91c1c;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #ef4444;
+    }
+    
+    .success-alert {
+        color: #ecfdf5;
+        background-color: #047857;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #10b981;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- signup-section -->
+<section class="signup-section">
+    <div class="auto-container">
+        <div class="signup-form">
+            <h2>Create Account</h2>
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            {% if success %}
+            <div class="success-alert">{{ success }}</div>
+            {% endif %}
+            
+            <form id="signup-form" method="post" action="{% url 'signup' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
+                <div class="login-link">
+                    <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %} 

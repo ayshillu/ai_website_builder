@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load json_filters %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">MongoDB Diagnostic</h1>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3>MongoDB Connection Status</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Connected:</strong> {% if mongo_info.connected %}<span class="text-success">Yes</span>{% else %}<span class="text-danger">No</span>{% endif %}</p>
+                    <p><strong>Connection String:</strong> {{ mongo_info.connection_string }}</p>
+                    <p><strong>Database Name:</strong> {{ mongo_info.database_name|default:"Not connected" }}</p>
+                    <p><strong>Collections:</strong> {{ mongo_info.collections|join:", "|default:"None" }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Error:</strong> {% if mongo_info.error %}<span class="text-danger">{{ mongo_info.error }}</span>{% else %}<span class="text-success">None</span>{% endif %}</p>
+                    <p><strong>Total Website Count (MongoDB):</strong> {{ mongo_info.website_count }}</p>
+                    <p><strong>Total Website Count (Django):</strong> {{ django_website_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if user_email %}
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h3>User Website Data</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>User Email:</strong> {{ user_email }}</p>
+            <p><strong>MongoDB Websites:</strong> {{ mongo_user_website_count }}</p>
+            <p><strong>Django ORM Websites:</strong> {{ django_user_website_count }}</p>
+            
+            {% if mongo_user_websites %}
+            <h4 class="mt-4">MongoDB Websites</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Business Name</th>
+                            <th>Business Type</th>
+                            <th>Location</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for website in mongo_user_websites %}
+                        <tr>
+                            <td>{{ website._id }}</td>
+                            <td>{{ website.business_name }}</td>
+                            <td>{{ website.business_type }}</td>
+                            <td>{{ website.location }}</td>
+                            <td>{{ website.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-warning mt-3">
+                No websites found in MongoDB for this user.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if mongo_info.sample_website %}
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h3>Sample Website Data</h3>
+        </div>
+        <div class="card-body">
+            <pre class="bg-light p-3">{{ mongo_info.sample_website|pprint }}</pre>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h3>Troubleshooting Tips</h3>
+        </div>
+        <div class="card-body">
+            <ol>
+                <li>Check that your MongoDB Atlas connection string in the .env file is correct</li>
+                <li>Verify that your MongoDB Atlas cluster is running and accessible</li>
+                <li>Make sure your IP address is whitelisted in MongoDB Atlas</li>
+                <li>Check that the database and collection names match what's expected</li>
+                <li>Try creating a new website to see if it gets saved to MongoDB</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}

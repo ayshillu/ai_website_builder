@@ -5,16 +5,11 @@
 	//Hide Loading Box (Preloader)
 	function handlePreloader() {
 		if($('.loader-wrap').length){
-			$('.loader-wrap').delay(1000).fadeOut(500);
+			// Immediately hide preloader
+			$('.loader-wrap').hide();
 		}
 	}
 
-	if ($(".preloader-close").length) {
-        $(".preloader-close").on("click", function(){
-            $('.loader-wrap').delay(200).fadeOut(500);
-        })
-    }
-	
 	//Update Header Style and Scroll to Top
 	function headerStyle() {
 		if($('.main-header').length){

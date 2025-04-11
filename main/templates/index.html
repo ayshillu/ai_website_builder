@@ -1,574 +1,294 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+{% block title %}Growthzi - AI Website Builder{% endblock %}
 
-    <title>Growthzi</title>
+{% block extra_css %}
+<style>
+    .hero-section {
+        padding: 120px 0 80px;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(to right, #6366f1, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: #a5b4fc;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+    
+    .features-section {
+        padding: 80px 0;
+        background-color: #1e293b;
+    }
+    
+    .feature-card {
+        background-color: #0f172a;
+        border-radius: 10px;
+        padding: 30px;
+        height: 100%;
+        transition: all 0.3s ease;
+        border: 1px solid #334155;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #6366f1;
+    }
+    
+    .feature-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #f8fafc;
+    }
+    
+    .feature-text {
+        color: #cbd5e1;
+        line-height: 1.6;
+    }
+    
+    .cta-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+        text-align: center;
+    }
+    
+    .cta-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+    }
+    
+    .cta-text {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .cta-button {
+        background-color: #ffffff;
+        color: #6366f1;
+        padding: 15px 30px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        color: #4f46e5;
+    }
+    
+    .testimonial-section {
+        padding: 80px 0;
+        background-color: #0f172a;
+    }
+    
+    .testimonial-card {
+        background-color: #1e293b;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        border: 1px solid #334155;
+    }
+    
+    .testimonial-text {
+        font-style: italic;
+        color: #e2e8f0;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+    
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #6366f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        margin-right: 15px;
+    }
+    
+    .author-info h4 {
+        margin: 0;
+        font-size: 1.125rem;
+        color: #f8fafc;
+    }
+    
+    .author-info p {
+        margin: 0;
+        color: #a5b4fc;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #f8fafc;
+    }
+    
+    .section-title p {
+        font-size: 1.125rem;
+        color: #a5b4fc;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
 
-    <!-- Fav Icon -->
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <!-- Stylesheets -->
-    <link href="{% static 'css/owl.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
-    <link href="{% static 'css/elpath.css' %}" rel="stylesheet">
-    <link href="{% static 'css/color.css' %}" id="jssDefault" rel="stylesheet">
-    <link href="{% static 'css/rtl.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-
-
-</head>
-
-
-<!-- page wrapper -->
-
-<body>
-
-    <div class="boxed_wrapper ltr">
-
-
-        <!-- preloader -->
-        <div class="loader-wrap">
-            <div class="preloader">
-                <div class="preloader-close">close</div>
-                <div id="handle-preloader" class="handle-preloader">
-                    <div class="animation-preloader">
-                        <div class="spinner"></div>
-                        <div class="txt-loading">
-                            <span data-text-preloader="G" class="letters-loading">
-                                G
-                            </span>
-                            <span data-text-preloader="r" class="letters-loading">
-                                r
-                            </span>
-                            <span data-text-preloader="o" class="letters-loading">
-                                o
-                            </span>
-                            <span data-text-preloader="w" class="letters-loading">
-                                w
-                            </span>
-                            <span data-text-preloader="t" class="letters-loading">
-                                t
-                            </span>
-                            <span data-text-preloader="h" class="letters-loading">
-                                h
-                            </span>
-                            <span data-text-preloader="z" class="letters-loading">
-                                z
-                            </span>
-                            <span data-text-preloader="i" class="letters-loading">
-                                i
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Transform Your Business with AI-Generated Websites</h1>
+            <p class="hero-subtitle">Create professional, custom websites in minutes with our advanced AI technology. No coding required - just describe your business and let our AI do the rest.</p>
+            <a href="{% url 'details' %}" class="cta-button">Generate Your Website Now</a>
         </div>
-        <!-- preloader end -->
-
-
-        <!-- page-direction -->
-        <div class="page_direction">
-            <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
-            <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
-        </div>
-        <!-- page-direction end -->
-
-
-        <!-- main header -->
-        <header class="main-header">
-            <!-- header-lower -->
-            <div class="header-lower">
-                <div class="auto-container">
-                    <div class="outer-box">
-                        <div class="logo-box">
-                            <figure class="logo"><a href="index.html"><img src="{% static 'images/logo.png' %}"
-                                        alt=""></a></figure>
-                        </div>
-                        <div class="menu-area">
-                            <!--Mobile Navigation Toggler-->
-                            <div class="mobile-nav-toggler">
-                                <i class="icon-bar"></i>
-                                <i class="icon-bar"></i>
-                                <i class="icon-bar"></i>
-                            </div>
-                            <nav class="main-menu navbar-expand-md navbar-light clearfix">
-                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                    <ul class="navigation scroll-nav clearfix">
-                                        <li><a href="#demo">Demos</a></li>
-                                        <li><a href="#features">Features</a></li>
-                                        <li><a href="https://templatepath.ticksy.com/">Support</a></li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="menu-right-content">
-                            <div class="btn-box"><a
-                                    href="https://themeforest.net/item/sensai-ai-generator-html-template/49328359?s_rank=2"
-                                    target="_blank">Login</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- main-header end -->
-
-
-        <!-- banner-section -->
-        <section class="banner-section centred p_relative">
-            <div class="pattern-layer">
-                <div class="pattern-1" style="background-image: url(images/shape-1.png);"></div>
-                <div class="pattern-2" style="background-image: url(images/shape-2.png);"></div>
-                <div class="pattern-3" style="background-image: url(images/shape-3.png);"></div>
-                <div class="pattern-4" style="background-image: url(images/shape-4.png);"></div>
-                <div class="pattern-5" style="background-image: url(images/shape-5.png);"></div>
-            </div>
-            <div class="auto-container">
-                <div class="content-box">
-                    <h2><span class="animation_text_word"></span> Generator <br>Template</h2>
-                    <p>The AI website generator who turns your imagination into unique</p>
-
-                    <a href="{% url 'details' %}">
-                        <button >Generate your website</button>
-                    </a>
-                </div>
-                <div class="mouse-btn-down scroll-to-target" data-target=".main-footer">
-                    <div class="scroll-btn-flip-box">
-                        <span class="scroll-btn-flip" data-text="Scroll Down">Scroll Down</span>
-                    </div>
-                    <div class="scroll-arrow-box">
-                        <img src="{% static 'images/icon-1.png' %}" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- banner-section end -->
-
-
-        <!-- funfact-section -->
-        <section class="funfact-section centred pb_150">
-            <div class="pattern-layer" style="background-image: url(images/shape-7.png);"></div>
-            <div class="auto-container">
-                <div class="inner-container">
-                    <div class="shape" style="background-image: url(images/shape-6.png);"></div>
-                    <div class="sec-title mb_55">
-                        <span class="sub-title mb_15">Best Choice</span>
-                        <h2>Take your website to the <br>next level</h2>
-                    </div>
-                    <div class="funfact-inner">
-                        <div class="funfact-block-one">
-                            <div class="inner-box">
-                                <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="150">0</span><span>+</span>
-                                </div>
-                                <p>UI Elements</p>
-                            </div>
-                        </div>
-                        <div class="funfact-block-one">
-                            <div class="inner-box">
-                                <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="07">0</span><span>+</span>
-                                </div>
-                                <p>Home Pages</p>
-                            </div>
-                        </div>
-                        <div class="funfact-block-one">
-                            <div class="inner-box">
-                                <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="100">0</span><span>+</span>
-                                </div>
-                                <p>Premade Blocks</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- funfact-section end -->
-
-
-        <!-- demo-section -->
-        <section class="demo-section centred" id="demo">
-            <div class="auto-container">
-                <div class="sec-title mb_55">
-                    <span class="sub-title mb_15">Homepages</span>
-                    <h2>Great packs of ready <br>made theme.</h2>
-                    <p>Beautiful, hand-crafted designs to get you started. Install any demo or <br>template with a
-                        single click. Mix and match anything.</p>
-                </div>
-                <div class="inner-container">
-                    <div class="row clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/"
-                                            target="_blank"><img src="{% static 'images/demo-1.jpg' %}" alt=""></a>
-                                    </figure>
-                                    <h3><a href="https://azim.hostlin.com/Sensai/" target="_blank">AI Website
-                                            Generator</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-2.html"
-                                            target="_blank"><img src="{% static 'images/demo-2.jpg' %}" alt=""></a>
-                                    </figure>
-                                    <h3><a href="https://azim.hostlin.com/Sensai/index-2.html" target="_blank">AI Website
-                                            Generator (Dark)</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-3.html"
-                                            target="_blank"><img src="{% static 'images/demo-3.jpg' %}" alt=""></a>
-                                    </figure>
-                                    <h3><a href="https://azim.hostlin.com/Sensai/index-3.html" target="_blank">AI Website
-                                            Generator</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-4.html"
-                                            target="_blank"><img src="{% static 'images/demo-4.jpg' %}" alt=""></a>
-                                    </figure>
-                                    <h3><a href="https://azim.hostlin.com/Sensai/index-4.html" target="_blank">AI Website
-                                            Generator</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-5.html"
-                                            target="_blank"><img src="{% static 'images/demo-5.jpg' %}" alt=""></a>
-                                    </figure>
-                                    <h3><a href="https://azim.hostlin.com/Sensai/index-5.html" target="_blank">AI Website
-                                            Generator</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-6.html"
-                                            target="_blank"><img src="{% static 'images/demo-6.jpg' %}" alt=""></a>
-                                    </figure>
-                                    <h3><a href="https://azim.hostlin.com/Sensai/index-6.html" target="_blank">AI
-                                            Website</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><a href="https://azim.hostlin.com/Sensai/index-7.html"
-                                            target="_blank"><img src="{% static 'images/demo-7.jpg' %}" alt=""></a>
-                                    </figure>
-                                    <h3><a href="https://azim.hostlin.com/Sensai/index-7.html" target="_blank">AI
-                                            SAAS</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 demo-block">
-                            <div class="demo-block-one">
-                                <div class="inner-box">
-                                    <figure class="image-box"><img src="{% static 'images/demo-8.jpg' %}" alt="">
-                                    </figure>
-                                    <h3>Coming Soon</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- demo-section end -->
-
-
-        <div class="slide-text">
-            <ul class="text-box">
-                <li>Image</li>
-                <li>Video</li>
-                <li>Audio</li>
-            </ul>
-        </div>
-
-
-        <!-- responsive-section -->
-        <section class="responsive-section">
-            <div class="pattern-layer" style="background-image: url(images/shape-8.png);"></div>
-            <div class="auto-container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                        <figure class="image-box clearfix"><img src="{% static 'images/responsive-1.png' %}" alt="">
-                        </figure>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                        <div class="content-box">
-                            <div class="sec-title">
-                                <span class="sub-title mb_15">Responsive</span>
-                                <h2>Fully Responsive & Perfectly fit to all screen</h2>
-                                <p>Growthzi is responsive so the layout will adapt to different screen sizes that will
-                                    make your website compatible with any device such as smart phones, tablets &
-                                    computers.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- responsive-section end -->
-
-
-        <!-- block-section -->
-        <section class="block-section">
-            <div class="pattern-layer" style="background-image: url(images/shape-9.png);"></div>
-            <div class="auto-container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                        <div class="content-box">
-                            <div class="sec-title">
-                                <span class="sub-title mb_15">Unlimited Blocks</span>
-                                <h2>Create your dream Website by using unlimited style</h2>
-                                <p>Choose the most suitable template from the great collection of beautiful templates.
-                                    Create your website in minutes by using readymade inner pages and save time.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                        <figure class="image-box clearfix"><img src="{% static 'images/block-1.png' %}" alt=""></figure>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- block-section end -->
-
-
-        <!-- feature-section -->
-        <section class="feature-section pt_150 centred" id="features">
-            <div class="pattern-layer">
-                <div class="pattern-1" style="background-image: url(images/shape-11.png);"></div>
-                <div class="pattern-2" style="background-image: url(images/shape-4.png);"></div>
-            </div>
-            <div class="auto-container">
-                <div class="sec-title mb_55">
-                    <span class="sub-title mb_15">Features</span>
-                    <h2>Get Access to Exclusive <br>Features</h2>
-                </div>
-                <div class="inner-container">
-                    <div class="shape" style="background-image: url(images/shape-10.png);"></div>
-                    <ul class="feature-list clearfix">
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-2.png' %}" alt=""></div>
-                                <h4>Swiper Touch Slider</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-3.png' %}" alt=""></div>
-                                <h4>Isotope Filtering</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-4.png' %}" alt=""></div>
-                                <h4>W3C Validation</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-5.png' %}" alt=""></div>
-                                <h4>Mailchimp Compatible</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-6.png' %}" alt=""></div>
-                                <h4>Google Fonts</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-7.png' %}" alt=""></div>
-                                <h4>WordPress 6.1</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-8.png' %}" alt=""></div>
-                                <h4>Magnific Popup</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-9.png' %}" alt=""></div>
-                                <h4>Scroll Animation</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-10.png' %}" alt=""></div>
-                                <h4>Elementor Builder</h4>
-                            </div>
-                        </li>
-                        <li class="feature-block-one">
-                            <div class="inner-box">
-                                <div class="icon-box"><img src="{% static 'images/icon-11.png' %}" alt=""></div>
-                                <h4>Ajax Contact Form</h4>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <!-- feature-section end -->
-
-
-        <!-- inner-section -->
-        <section class="inner-section centred">
-            <div class="outer-container">
-                <div class="sec-title mb_55">
-                    <span class="sub-title mb_15">Inner Page</span>
-                    <h2>Awesome designed <br>Inner pages</h2>
-                </div>
-                <ul class="page-list">
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-1.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-2.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-3.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-4.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-5.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-6.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-7.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-1.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-2.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-3.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-4.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-5.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-6.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-7.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-1.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-2.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-3.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-4.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-5.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-6.jpg' %}" alt=""></figure>
-                    </li>
-                    <li>
-                        <figure class="image-box"><img src="{% static 'images/inner-7.jpg' %}" alt=""></figure>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <!-- inner-section end -->
-
-
-        <!-- main-footer -->
-        <footer class="main-footer centred">
-            <div class="pattern-layer">
-                <div class="pattern-1" style="background-image: url(images/shape-12.png);"></div>
-                <div class="pattern-2" style="background-image: url(images/shape-4.png);"></div>
-                <div class="pattern-3" style="background-image: url(images/shape-5.png);"></div>
-                <div class="pattern-5" style="background-image: url(images/shape-14.png);"></div>
-            </div>
-            <div class="auto-container">
-                <div class="content-box">
-                    <h2>Create Stunning Website <br>with <span>Sensai</span></h2>
-                    <a href="https://themeforest.net/item/sensai-ai-generator-html-template/49328359?s_rank=2"
-                        target="_blank">Purchase Theme</a>
-                </div>
-            </div>
-        </footer>
-        <!-- main-footer end -->
-
-
-
-        <!--Scroll to top-->
-        <div class="scroll-to-top">
-            <div>
-                <div class="scroll-top-inner">
-                    <div class="scroll-bar">
-                        <div class="bar-inner"></div>
-                    </div>
-                    <div class="scroll-bar-text">Go To Top</div>
-                </div>
-            </div>
-        </div>
-        <!-- Scroll to top end -->
-
     </div>
+</section>
 
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Why Choose Growthzi</h2>
+            <p>Our AI-powered platform offers unique advantages for creating your perfect website</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Lightning Fast Creation</h3>
+                    <p class="feature-text">Generate a complete, professional website in minutes instead of weeks. Our AI understands your business needs and creates tailored content instantly.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Beautiful, Modern Design</h3>
+                    <p class="feature-text">Every website is crafted with the latest design trends and best practices. Our AI ensures your site looks professional and engaging across all devices.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">Smart Content Generation</h3>
+                    <p class="feature-text">Our AI creates relevant, engaging content specific to your business. No more generic templates or placeholder text - just authentic content that represents your brand.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- jequery plugins -->
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <h2 class="cta-title">Ready to Build Your Dream Website?</h2>
+        <p class="cta-text">Join thousands of businesses who have already transformed their online presence with Growthzi's AI website builder.</p>
+        <a href="{% url 'details' %}" class="cta-button">Get Started Now</a>
+    </div>
+</section>
 
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/owl.js' %}"></script>
-    <script src="{% static 'js/wow.js' %}"></script>
-    <script src="{% static 'js/appear.js' %}"></script>
-    <script src="{% static 'js/pagenav.js' %}"></script>
-    <script src="{% static 'js/text_animation.js' %}"></script>
-    <script src="{% static 'js/text_plugins.js' %}"></script>
-
-    <!-- main-js -->
-    <script src="{% static 'js/script.js' %}"></script>
-
-</body><!-- End of .page_wrapper -->
-
-</html>
+<!-- Testimonials Section -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>What Our Users Say</h2>
+            <p>Hear from businesses that have transformed their online presence with Growthzi</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Growthzi completely transformed our online presence. We went from having no website to a professional, fully-functional site in just minutes. The AI understood our business perfectly!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Michael Reynolds</h4>
+                            <p>Owner, Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a small business owner, I couldn't afford a professional web designer. Growthzi gave me a beautiful website that perfectly represents my brand. It's been a game-changer for my business."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LS</div>
+                        <div class="author-info">
+                            <h4>Laura Sanchez</h4>
+                            <p>Founder, Creative Studio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The speed and quality of the websites generated by Growthzi is incredible. We've used it for multiple client projects and the results have been consistently impressive. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>James Davis</h4>
+                            <p>Marketing Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

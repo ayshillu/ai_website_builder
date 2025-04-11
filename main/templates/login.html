@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login | Growthzi{% endblock %}
+
+{% block extra_css %}
+<style>
+    .login-section {
+        padding: 80px 0;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        background-color: #0f172a;
+    }
+
+    .pattern-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .login-form {
+        background: #1e293b;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        margin: 0 auto;
+        border: 1px solid #334155;
+    }
+
+    .login-form h2 {
+        margin-bottom: 30px;
+        color: #a5b4fc;
+        font-weight: 700;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 500;
+        color: #f1f5f9;
+    }
+
+    .form-group input {
+        width: 100%;
+        height: 55px;
+        border: 1px solid #475569;
+        border-radius: 5px;
+        padding: 0 20px;
+        font-size: 16px;
+        color: #f1f5f9;
+        background-color: #334155;
+        transition: all 300ms ease;
+    }
+
+    .form-group input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+        outline: none;
+    }
+
+    .login-btn {
+        height: 55px;
+        border-radius: 5px;
+        padding: 0 35px;
+        font-size: 16px;
+        line-height: 55px;
+        font-weight: 500;
+        color: #fff;
+        background: #6366f1;
+        text-align: center;
+        cursor: pointer;
+        transition: all 300ms ease;
+        border: none;
+        display: block;
+        width: 100%;
+    }
+
+    .login-btn:hover {
+        background: #4f46e5;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 25px;
+        color: #cbd5e1;
+    }
+
+    .signup-link a {
+        color: #a5b4fc;
+        font-weight: 500;
+        transition: all 300ms ease;
+    }
+
+    .signup-link a:hover {
+        text-decoration: underline;
+        color: #818cf8;
+    }
+
+    .error-message {
+        color: #fef2f2;
+        background-color: #b91c1c;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #ef4444;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- login-section -->
+<section class="login-section">
+    <div class="auto-container">
+        <div class="login-form">
+            <h2>Welcome Back</h2>
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            <form id="login-form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Log In</button>
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %} 

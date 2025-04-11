@@ -1,0 +1,353 @@
+{% extends 'base.html' %}
+{% load json_filters %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Website Preview Header -->
+    <div class="bg-dark text-white p-3 d-flex justify-content-between align-items-center">
+        <div>
+            <h3>Website Preview: {{ website_data.business_name }}</h3>
+            <p class="mb-0">{{ website_data.business_type }} | {{ website_data.industry }} | {{ website_data.location }}</p>
+        </div>
+        <div>
+            <a href="{% url 'mongodb_diagnostic' %}" class="btn btn-info me-2">Diagnostic</a>
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Website Content -->
+    <div class="website-preview">
+        <!-- Theme Colors -->
+        <style>
+            :root {
+                --primary-color: {{ website_layout.theme.primary_color|default:"#007bff" }};
+                --secondary-color: {{ website_layout.theme.secondary_color|default:"#6c757d" }};
+                --font-family: "{{ website_layout.theme.font_family|default:"Roboto" }}", sans-serif;
+            }
+            .website-preview {
+                font-family: var(--font-family);
+            }
+            .website-preview .btn-primary {
+                background-color: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+            .website-preview .text-primary {
+                color: var(--primary-color) !important;
+            }
+            .website-preview .bg-primary {
+                background-color: var(--primary-color) !important;
+            }
+            .website-preview .btn-secondary {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+            }
+            .website-preview .text-secondary {
+                color: var(--secondary-color) !important;
+            }
+            .website-preview .bg-secondary {
+                background-color: var(--secondary-color) !important;
+            }
+            .website-preview .navbar {
+                background-color: var(--primary-color);
+            }
+            .website-preview .footer {
+                background-color: var(--secondary-color);
+                color: white;
+                padding: 2rem 0;
+            }
+            .hero-section {
+                background-size: cover;
+                background-position: center;
+                color: white;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+                padding: 8rem 0;
+            }
+            .section {
+                padding: 4rem 0;
+            }
+            .section-title {
+                margin-bottom: 2rem;
+                position: relative;
+                padding-bottom: 1rem;
+            }
+            .section-title:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100px;
+                height: 3px;
+                background-color: var(--primary-color);
+            }
+            .service-card {
+                transition: transform 0.3s;
+                margin-bottom: 1.5rem;
+            }
+            .service-card:hover {
+                transform: translateY(-5px);
+            }
+            .testimonial {
+                background-color: rgba(0,0,0,0.05);
+                padding: 1.5rem;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+        </style>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    {% if website_layout.theme.logo.type == 'text' %}
+                        {{ website_layout.theme.logo.text }}
+                    {% else %}
+                        <img src="{{ website_layout.theme.logo.url }}" alt="{{ website_data.business_name }} Logo" height="30">
+                    {% endif %}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        {% for page in website_layout.pages %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#{{ page.name|lower }}">{{ page.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        {% for page in website_layout.pages %}
+            <div id="{{ page.name|lower }}" class="page">
+                {% for section in page.sections %}
+                    {% if section.type == 'hero' %}
+                        <div class="hero-section" style="background-image: url('{{ section.background_image }}');">
+                            <div class="container text-center">
+                                <h1 class="display-4">{{ section.title }}</h1>
+                                <p class="lead">{{ section.subtitle }}</p>
+                                <a href="{{ section.cta.link }}" class="btn btn-primary btn-lg mt-3">{{ section.cta.text }}</a>
+                            </div>
+                        </div>
+                    {% elif section.type == 'about' or section.type == 'content' %}
+                        <div class="section bg-light" id="{{ section.id|default:'' }}">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <h2 class="section-title">{{ section.title }}</h2>
+                                        <p>{{ section.content }}</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="{{ section.image }}" alt="{{ section.title }}" class="img-fluid rounded shadow">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% elif section.type == 'services' %}
+                        <div class="section">
+                            <div class="container">
+                                <h2 class="section-title text-center">{{ section.title }}</h2>
+                                <div class="row">
+                                    {% for item in section.items %}
+                                        <div class="col-md-4">
+                                            <div class="card service-card h-100 shadow-sm">
+                                                <div class="card-body text-center">
+                                                    <div class="mb-3">
+                                                        <i class="fas fa-{{ item.icon }} fa-3x text-primary"></i>
+                                                    </div>
+                                                    <h4 class="card-title">{{ item.title }}</h4>
+                                                    <p class="card-text">{{ item.description }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% elif section.type == 'testimonials' %}
+                        <div class="section bg-light">
+                            <div class="container">
+                                <h2 class="section-title text-center">{{ section.title }}</h2>
+                                <div class="row">
+                                    {% for item in section.items %}
+                                        <div class="col-md-6">
+                                            <div class="testimonial">
+                                                <p class="mb-2"><i class="fas fa-quote-left text-primary me-2"></i>{{ item.quote }}</p>
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <h5 class="mb-0">{{ item.author }}</h5>
+                                                        <small class="text-muted">{{ item.position }}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% elif section.type == 'contact' %}
+                        <div class="section">
+                            <div class="container">
+                                <h2 class="section-title text-center">{{ section.title }}</h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4>Get in Touch</h4>
+                                        <p><i class="fas fa-map-marker-alt text-primary me-2"></i> {{ section.address }}</p>
+                                        <p><i class="fas fa-phone text-primary me-2"></i> {{ section.phone }}</p>
+                                        <p><i class="fas fa-envelope text-primary me-2"></i> {{ section.email }}</p>
+                                        <p><i class="fas fa-clock text-primary me-2"></i> {{ section.hours }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Your Name">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="email" class="form-control" placeholder="Your Email">
+                                            </div>
+                                            <div class="mb-3">
+                                                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Send Message</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% elif section.type == 'service_list' %}
+                        <div class="section">
+                            <div class="container">
+                                <h2 class="section-title text-center">Our Services</h2>
+                                <div class="row">
+                                    {% for service in section.services %}
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card h-100 shadow">
+                                                <img src="{{ service.image }}" class="card-img-top" alt="{{ service.title }}">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">{{ service.title }}</h4>
+                                                    <p class="card-text">{{ service.description }}</p>
+                                                    <p class="text-primary fw-bold">{{ service.price }}</p>
+                                                </div>
+                                                <div class="card-footer bg-white border-0">
+                                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% elif section.type == 'team' %}
+                        <div class="section bg-light">
+                            <div class="container">
+                                <h2 class="section-title text-center">{{ section.title }}</h2>
+                                <div class="row">
+                                    {% for member in section.members %}
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card h-100 text-center shadow-sm">
+                                                <img src="{{ member.image }}" class="card-img-top" alt="{{ member.name }}">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">{{ member.name }}</h4>
+                                                    <p class="text-muted">{{ member.position }}</p>
+                                                    <p class="card-text">{{ member.bio }}</p>
+                                                </div>
+                                                <div class="card-footer bg-white border-0">
+                                                    <div class="social-icons">
+                                                        <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                                                        <a href="#" class="text-primary me-2"><i class="fab fa-twitter"></i></a>
+                                                        <a href="#" class="text-primary"><i class="fab fa-facebook"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% elif section.type == 'header' %}
+                        <div class="bg-primary text-white py-5">
+                            <div class="container text-center">
+                                <h1 class="display-4">{{ section.title }}</h1>
+                                <p class="lead">{{ section.subtitle }}</p>
+                            </div>
+                        </div>
+                    {% elif section.type == 'contact_form' %}
+                        <div class="section">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card shadow">
+                                            <div class="card-body p-4">
+                                                <form>
+                                                    {% for field in section.fields %}
+                                                        <div class="mb-3">
+                                                            <label class="form-label">{{ field.label }}</label>
+                                                            {% if field.type == 'textarea' %}
+                                                                <textarea class="form-control" name="{{ field.name }}" rows="4" {% if field.required %}required{% endif %}></textarea>
+                                                            {% else %}
+                                                                <input type="{{ field.type }}" class="form-control" name="{{ field.name }}" {% if field.required %}required{% endif %}>
+                                                            {% endif %}
+                                                        </div>
+                                                    {% endfor %}
+                                                    <button type="submit" class="btn btn-primary">{{ section.submit_text }}</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% elif section.type == 'map' %}
+                        <div class="section p-0">
+                            <div class="container-fluid p-0">
+                                <div class="ratio ratio-21x9">
+                                    <iframe src="{{ section.embed_url }}" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h5>{{ website_data.business_name }}</h5>
+                        <p>{{ website_data.description }}</p>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            {% for link in website_layout.footer.links %}
+                                <li><a href="{{ link.url }}" class="text-white">{{ link.text }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Connect With Us</h5>
+                        <div class="social-icons mb-3">
+                            {% for social in website_layout.footer.social_links %}
+                                <a href="{{ social.url }}" class="text-white me-3">
+                                    <i class="fab fa-{{ social.platform }} fa-lg"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4 bg-light">
+                <div class="text-center">
+                    <p class="mb-0">{{ website_layout.footer.copyright }}</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- Add Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}

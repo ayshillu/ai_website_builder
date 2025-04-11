@@ -1,24 +1,10 @@
+# This file is temporarily disabled to prevent MongoDB connection errors
 
-# from pymongo.mongo_client import MongoClient
-# from pymongo.server_api import ServerApi
-
-# uri = "mongodb+srv://ayshaabdulfaizal:mydatabase@ai-builder.fqbgu3d.mongodb.net/?retryWrites=true&w=majority&appName=ai-builder"
-
-# # Create a new client and connect to the server
-# client = MongoClient(uri, server_api=ServerApi('1'))
-
-# # Send a ping to confirm a successful connection
-# try:
-#     client.admin.command('ping')
-#     print("Pinged your deployment. You successfully connected to MongoDB!")
-# except Exception as e:
-#     print(e)
-
+"""
 from pymongo import MongoClient
 
 # Connect to MongoDB Atlas
-client = MongoClient('mongodb+srv://ayshaabdulfaizal:mydatabase@ai-builder.fqbgu3d.mongodb.net/?retryWrites=true&w=majority&appName=ai-builder')
-
+client = MongoClient('mongodb+srv://username:password@cluster.mongodb.net/')
 
 # Access your database and collection
 db = client['ai_builder_db']
@@ -39,3 +25,9 @@ print(f"Inserted Document ID: {inserted_document.inserted_id}")
 
 # Close connection
 client.close()
+"""
+
+# For testing without MongoDB
+def test_connection():
+    print("MongoDB connection is disabled.")
+    return True
